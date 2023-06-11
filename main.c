@@ -6,43 +6,48 @@
 /*   By: oliove <olivierliove@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 08:12:27 by oliove            #+#    #+#             */
-/*   Updated: 2023/03/24 20:39:22 by oliove           ###   ########.fr       */
+/*   Updated: 2023/06/11 19:55:01 by oliove           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+
 #include "push_swap.h"
+#include "structures.h"
 
+int main(int argc, char *argv[]) {
 
-int main(int ac, char **av)
-{
-
-    int i;
-
+    t_stack *stack_A = malloc(sizeof(stack_A));
     
-    int tableau[] = {3,1,5,6,7,2,9,4,8,0};
-    int tab[] = {12,16,18,20,21,22,23,24,28,26};
 
-	int lenght = sizeof(tableau) / sizeof(int);
+    if (argc < 2) {
+        printf("Veuillez fournir au moins un nombre à trier en argument.\n");
+        return 1;
+    }
+
   
-    i = 0;
-    while (i < lenght)
-    {
-        printf("%d                %d\n",tableau[i],tab[i]);
-        i++;
-    }
+    int taille = argc - 1;
     
-    ft_rrr(tableau,tab,10);
-    printf("=====================================\n");
-    i = 0;
-    while (i < lenght)
+    int i = 1;
+    while (i < argc)
     {
-        printf("%d                %d\n",tableau[i], tab[i]);
+        stack_A->value[i-1] = atoi(argv[i]);
         i++;
     }
     
 
-    return (0);
+    for (int i = 1; i < argc; i++) {
+        stack_A->value[i-1] = atoi(argv[i]);
+    }
+
+ 
+    printf("Suite triée : \n");
+    for (int i = 0; i < taille; i++) {
+        printf("%d \n", stack_A->pos[i]);
+    }
+    printf("\n");
+    free(stack_A);
+
+    return 0;
 }
-
